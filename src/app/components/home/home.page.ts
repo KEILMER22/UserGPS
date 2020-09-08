@@ -50,8 +50,8 @@ export class HomePage implements OnInit {
   private latlng = {
     lat : 0,
     lng : 0
-  }
-  
+  };
+
   constructor(
     private geolocation: Geolocation,
     private backgroundGeolocation: BackgroundGeolocation,
@@ -69,10 +69,10 @@ export class HomePage implements OnInit {
     this.data.nombre = (await user).email;
     await this.platform.ready();
     await this.loadMap();
-    this.startGeolocation();
   }
   OnLogout() {
     this.authService.logout();
+    this.backgroundGeolocation.stop();
   }
   startGeolocation(){
     this.backgroundGeolocation.configure(this.config).then(() => {
